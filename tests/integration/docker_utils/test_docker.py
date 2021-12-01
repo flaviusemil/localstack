@@ -5,6 +5,7 @@ from subprocess import CalledProcessError
 from typing import NamedTuple
 
 import pytest
+from config import in_docker
 
 from localstack import config
 from localstack.utils.common import safe_run, short_uid, to_str
@@ -246,7 +247,9 @@ class TestDockerClient:
         ports.add(45180, 80)
         create_container("alpine", ports=ports)
 
-    @pytest.mark.failing_offline
+    @pytest.mark.skipif(
+        condition=in_docker(), reason="cannot test volume mounts from host when in docker"
+    )
     def test_create_with_volume(self, tmpdir, docker_client: ContainerClient, create_container):
         mount_volumes = [(tmpdir.realpath(), "/tmp/mypath")]
 
@@ -256,7 +259,6 @@ class TestDockerClient:
             mount_volumes=mount_volumes,
         )
         docker_client.start_container(c.container_id)
-
         assert tmpdir.join("foo.log").isfile(), "foo.log was not created in mounted dir"
 
     def test_copy_into_container(self, tmpdir, docker_client: ContainerClient, create_container):
