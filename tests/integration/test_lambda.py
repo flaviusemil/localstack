@@ -725,7 +725,6 @@ class TestLambdaBaseFeatures(unittest.TestCase):
         sqs_client.delete_queue(QueueUrl=queue_url_2)
         lambda_client.delete_function(FunctionName=function_name)
 
-    @pytest.mark.failing_offline
     def test_disabled_event_source_mapping_with_dynamodb(self):
         function_name = "lambda_func-{}".format(short_uid())
         ddb_table = "ddb_table-{}".format(short_uid())
@@ -803,7 +802,6 @@ class TestLambdaBaseFeatures(unittest.TestCase):
         # clean up
         lambda_client.delete_function(FunctionName=function_name)
 
-    @pytest.mark.failing_offline
     def test_event_source_mapping_with_sqs(self):
         lambda_client = aws_stack.connect_to_service("lambda")
         sqs_client = aws_stack.connect_to_service("sqs")
@@ -836,7 +834,6 @@ class TestLambdaBaseFeatures(unittest.TestCase):
         sqs_client.delete_queue(QueueUrl=queue_url_1)
         lambda_client.delete_function(FunctionName=function_name)
 
-    @pytest.mark.failing_offline
     def test_create_kinesis_event_source_mapping(self):
         function_name = "lambda_func-{}".format(short_uid())
         stream_name = "test-foobar"

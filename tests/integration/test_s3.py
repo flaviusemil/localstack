@@ -2306,7 +2306,6 @@ class TestS3(unittest.TestCase):
         client.delete_object(Bucket=bucket, Key=object_key)
         client.delete_bucket(Bucket=bucket)
 
-    @pytest.mark.failing_offline
     def test_s3_download_object_with_lambda(self):
         bucket_name = "bucket-%s" % short_uid()
         function_name = "func-%s" % short_uid()
@@ -2354,7 +2353,7 @@ class TestS3(unittest.TestCase):
         # Cleanup
         self._delete_bucket(bucket, key_by_path)
 
-    @pytest.mark.failing_offline
+    @pytest.mark.failing_offline  # downloads runtime dependencies
     def test_s3_lambda_integration(self):
         if not use_docker():
             return

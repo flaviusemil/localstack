@@ -5,9 +5,9 @@ from subprocess import CalledProcessError
 from typing import NamedTuple
 
 import pytest
-from config import in_docker
 
 from localstack import config
+from localstack.config import in_docker
 from localstack.utils.common import safe_run, short_uid, to_str
 from localstack.utils.docker_utils import (
     ContainerClient,

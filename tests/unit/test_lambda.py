@@ -426,7 +426,7 @@ class TestLambdaAPI(unittest.TestCase):
 
         self.assertEqual("Disabled", getResult["State"])
 
-    @pytest.mark.failing_offline
+    @pytest.mark.potentially_fixed
     def test_publish_function_version(self):
         with self.app.test_request_context():
             self._create_function(self.FUNCTION_NAME)
@@ -459,7 +459,7 @@ class TestLambdaAPI(unittest.TestCase):
             expected_result["Architectures"] = ["x86_64"]
             self.assertDictEqual(expected_result, result)
 
-    @pytest.mark.failing_offline
+    @pytest.mark.potentially_fixed
     def test_publish_update_version_increment(self):
         with self.app.test_request_context():
             self._create_function(self.FUNCTION_NAME)
@@ -503,7 +503,7 @@ class TestLambdaAPI(unittest.TestCase):
                 result["message"],
             )
 
-    @pytest.mark.failing_offline
+    @pytest.mark.potentially_fixed
     def test_list_function_versions(self):
         with self.app.test_request_context():
             self._create_function(self.FUNCTION_NAME)

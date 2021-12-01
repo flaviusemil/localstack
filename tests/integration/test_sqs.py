@@ -569,7 +569,6 @@ class SQSTest(unittest.TestCase):
         self.client.delete_queue(QueueUrl=nq)
         self.client.delete_queue(QueueUrl=dlq["QueueUrl"])
 
-    @pytest.mark.failing_offline
     def test_lambda_invoked_by_sqs_message_with_attributes(self):
         function_name = "lambda_func-{}".format(short_uid())
         queue_name = f"queue-{short_uid()}"
@@ -672,7 +671,6 @@ class SQSTest(unittest.TestCase):
         # clean up
         self.client.delete_queue(QueueUrl=queue_url)
 
-    @pytest.mark.failing_offline
     def test_lambda_invoked_by_sqs_message_with_delay_seconds(self):
         function_name = "lambda_func-{}".format(short_uid())
         queue_name = f"queue-{short_uid()}"
