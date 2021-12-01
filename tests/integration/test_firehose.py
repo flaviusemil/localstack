@@ -1,8 +1,6 @@
 import base64
 import json
 
-import pytest
-
 from localstack import config
 from localstack.services.generic_proxy import ProxyListener
 from localstack.services.infra import start_proxy
@@ -39,7 +37,6 @@ def handler(event, context):
 """
 
 
-@pytest.mark.failing_offline
 def test_firehose_http():
     class MyUpdateListener(ProxyListener):
         def forward_request(self, method, path, data, headers):

@@ -435,7 +435,6 @@ class TestLambdaBaseFeatures(unittest.TestCase):
         sqs_client.delete_queue(QueueUrl=queue_url)
         lambda_client.delete_function(FunctionName=lambda_name)
 
-    @pytest.mark.failing_offline
     def test_success_destination(self):
         payload = {}
         _assess_lambda_destination_invocation("Success", payload, self)
@@ -497,7 +496,7 @@ class TestLambdaBaseFeatures(unittest.TestCase):
         self.assertEqual(200, resp["ResponseMetadata"]["HTTPStatusCode"])
         lambda_client.delete_function(FunctionName=function_name)
 
-    @pytest.mark.failing_offline  # only failing in CI due to problems with huge log output
+    @pytest.mark.failing_offline  # TODO only failing in CI due to problems with huge log output. Sould be fixed as soon as the debug output is disabled
     def test_large_payloads(self):
         function_name = "large_payload-{}".format(short_uid())
         testutil.create_lambda_function(
@@ -1961,7 +1960,6 @@ class TestJavaRuntimes(LambdaTestBase):
         s3_client.delete_bucket(Bucket=bucket_name)
 
 
-@pytest.mark.failing_offline
 @pytest.mark.parametrize(
     "handler,expected_result",
     [

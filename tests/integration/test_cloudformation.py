@@ -3,7 +3,6 @@ import os
 import time
 import unittest
 
-import pytest
 from botocore.exceptions import ClientError
 from botocore.parsers import ResponseParserError
 
@@ -806,7 +805,6 @@ class CloudFormationTest(unittest.TestCase):
         self.assertIn(":%s:changeSet/nochanges/" % TEST_AWS_ACCOUNT_ID, response["Id"])
         self.assertIn(":%s:stack/" % TEST_AWS_ACCOUNT_ID, response["StackId"])
 
-    @pytest.mark.failing_offline
     def test_sam_template(self):
         awslambda = aws_stack.connect_to_service("lambda")
 

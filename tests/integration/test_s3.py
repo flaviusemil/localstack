@@ -1596,7 +1596,6 @@ class TestS3(unittest.TestCase):
 
         self._delete_bucket(bucket_name, keys)
 
-    @pytest.mark.failing_offline
     def test_s3_put_object_notification_with_lambda(self):
         bucket_name = "bucket-%s" % short_uid()
         function_name = "func-%s" % short_uid()

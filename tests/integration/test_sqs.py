@@ -393,7 +393,6 @@ class SQSTest(unittest.TestCase):
         self.client.delete_queue(QueueUrl=queue_url)
         self.client.delete_queue(QueueUrl=dlq_info["QueueUrl"])
 
-    @pytest.mark.failing_offline
     def test_dead_letter_queue_execution(self):
         lambda_client = aws_stack.connect_to_service("lambda")
 
@@ -805,7 +804,6 @@ class SQSTest(unittest.TestCase):
         self.client.delete_queue(QueueUrl=queue_url)
         testutil.delete_lambda_function(func_name)
 
-    @pytest.mark.failing_offline
     def test_lambda_invoked_by_sqs_message_with_delay_seconds_dotnetcore2(self):
         zip_file = load_file(TEST_LAMBDA_DOTNETCORE2, mode="rb")
         handler = "DotNetCore2::DotNetCore2.Lambda.Function::SimpleFunctionHandler"
@@ -814,7 +812,6 @@ class SQSTest(unittest.TestCase):
             zip_file, handler, LAMBDA_RUNTIME_DOTNETCORE2
         )
 
-    @pytest.mark.failing_offline
     def test_lambda_invoked_by_sqs_message_with_delay_seconds_dotnetcore31(self):
         zip_file = load_file(TEST_LAMBDA_DOTNETCORE31, mode="rb")
         handler = "dotnetcore31::dotnetcore31.Function::FunctionHandler"

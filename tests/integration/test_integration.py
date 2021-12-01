@@ -160,7 +160,6 @@ class IntegrationTest(unittest.TestCase):
         testutil.assert_objects(json.loads(to_str(test_data)), all_objects)
 
     # TODO fix duplication with test_lambda_streams_batch_and_transactions(..)!
-    @pytest.mark.failing_offline
     def test_kinesis_lambda_sns_ddb_sqs_streams(self):
         def create_kinesis_stream(name, delete=False):
             stream = aws_stack.create_kinesis_stream(name, delete=delete)
@@ -707,7 +706,6 @@ class IntegrationTest(unittest.TestCase):
         # clean up
         testutil.delete_lambda_function(lambda_ddb_name)
 
-    @pytest.mark.failing_offline
     def test_scheduled_lambda(self):
         def check_invocation(*args):
             log_events = LambdaTestBase.get_lambda_logs(self.scheduled_lambda_name)
@@ -796,7 +794,6 @@ def test_sqs_batch_lambda_forward(lambda_client, sqs_client, create_lambda_funct
     sqs_client.delete_queue(QueueUrl=queue_url)
 
 
-@pytest.mark.failing_offline
 def test_kinesis_lambda_forward_chain(kinesis_client, s3_client, create_lambda_function):
 
     try:
