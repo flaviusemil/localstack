@@ -381,7 +381,6 @@ class IntegrationTest(unittest.TestCase):
         testutil.delete_lambda_function(lambda_queue_name)
         sqs.delete_queue(QueueUrl=sqs_queue_info["QueueUrl"])
 
-    @pytest.mark.failing_offline
     def test_lambda_streams_batch_and_transactions(self):
         ddb_lease_table_suffix = "-kclapp2"
         table_name = TEST_TABLE_NAME + "lsbat" + ddb_lease_table_suffix
