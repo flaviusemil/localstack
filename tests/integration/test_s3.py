@@ -2353,7 +2353,7 @@ class TestS3(unittest.TestCase):
         # Cleanup
         self._delete_bucket(bucket, key_by_path)
 
-    @pytest.mark.failing_offline  # downloads runtime dependencies
+    @pytest.mark.skip_offline
     def test_s3_lambda_integration(self):
         if not use_docker():
             return

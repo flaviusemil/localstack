@@ -1708,7 +1708,6 @@ class TestGolangRuntimes:
             testutil.delete_lambda_function(func_name)
 
 
-@pytest.mark.failing_offline  # due to the download of test dependencies in setUpClass
 class TestJavaRuntimes(LambdaTestBase):
     @classmethod
     def setUpClass(cls):

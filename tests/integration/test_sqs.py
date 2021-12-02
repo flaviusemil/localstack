@@ -1670,7 +1670,6 @@ class TestSqsProvider:
 
         assert queue_url
 
-    @pytest.mark.failing_offline
     def test_dead_letter_queue_execution(
         self, sqs_client, sqs_create_queue, lambda_client, create_lambda_function
     ):
