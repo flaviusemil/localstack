@@ -6,7 +6,6 @@ import time
 import unittest
 
 import mock
-import pytest
 
 from localstack.constants import LAMBDA_TEST_ROLE, TEST_AWS_ACCOUNT_ID
 from localstack.services.awslambda import lambda_api, lambda_executors, lambda_utils
@@ -426,7 +425,6 @@ class TestLambdaAPI(unittest.TestCase):
 
         self.assertEqual("Disabled", getResult["State"])
 
-    @pytest.mark.potentially_fixed
     def test_publish_function_version(self):
         with self.app.test_request_context():
             self._create_function(self.FUNCTION_NAME)
@@ -459,7 +457,6 @@ class TestLambdaAPI(unittest.TestCase):
             expected_result["Architectures"] = ["x86_64"]
             self.assertDictEqual(expected_result, result)
 
-    @pytest.mark.potentially_fixed
     def test_publish_update_version_increment(self):
         with self.app.test_request_context():
             self._create_function(self.FUNCTION_NAME)
@@ -503,7 +500,6 @@ class TestLambdaAPI(unittest.TestCase):
                 result["message"],
             )
 
-    @pytest.mark.potentially_fixed
     def test_list_function_versions(self):
         with self.app.test_request_context():
             self._create_function(self.FUNCTION_NAME)
