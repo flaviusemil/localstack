@@ -1780,6 +1780,7 @@ class TestJavaRuntimes(LambdaTestBase):
         self.assertIn("LinkedHashMap", to_str(result_data))
         self.assertIsNotNone(result_data)
 
+    @pytest.mark.failing_offline  # Looks like the debug output could kill the CI env
     def test_java_runtime_with_large_payload(self):
         self.assertIsNotNone(self.test_java_jar)
 
